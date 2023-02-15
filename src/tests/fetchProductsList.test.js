@@ -19,12 +19,12 @@ describe('Teste a função fetchProductsList', () => {
   });
 
   it('fetchProductsList com argumento é um objeto de computadorSearch', async () => {
-    const save = await fetchProductsList('computador');
-    expect(save).toEqual(computadorSearch);
+    const param = await fetchProductsList('computador');
+    expect(param).toEqual(computadorSearch);
   });
 
   it('fetchProductsList sem argumento retorna um erro', async () => {
-    await expect(() => fetchProductsList())
-      .rejects.toThrow('Termo de busca não informado');
+    await expect(() => fetchProductsList()).rejects
+      .toThrow('Termo de busca não informado');
   });
 });
