@@ -4,25 +4,26 @@ import { createProductElement } from './helpers/shopFunctions';
 import './style.css';
 
 const createElement = document.createElement('div');
-const headerDiv = document.querySelector('.loading');
+const header = document.querySelector('.header');
 const productList = document.querySelector('.products');
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
-const createLoadElement = () => {
-  createElement.innerText = 'carregando...';
-  createElement.classList.add('loading');
-  headerDiv.appendChild(createElement);
-  return createElement;
+const createLoad = () => {
+  const createElement2 = document.createElement('div');
+  createElement2.innerText = 'carregando...';
+  createElement2.classList.add('loading');
+  header.appendChild(createElement2);
+  return createElement2;
 };
 
 const createError = () => {
   createElement.innerText = 'Algum erro ocorreu, recarregue a página e tente novamente';
   createElement.classList.add('error');
-  headerDiv.appendChild(createElement);
+  header.appendChild(createElement);
   return createElement;
 };
 
-const loadElement = createLoadElement();
+const loadElement = createLoad();
 
 const CreateProducts = async () => {
   try {
@@ -31,10 +32,11 @@ const CreateProducts = async () => {
       const element = createProductElement(product);
       productList.appendChild(element);
     });
+    loadElement.remove();
   } catch (error) {
+    loadElement.remove();
     createError();
   }
-  loadElement.remove();
 };
 
 window.onload = () => {
