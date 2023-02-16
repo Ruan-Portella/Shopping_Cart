@@ -1,11 +1,13 @@
 import { searchCep } from './helpers/cepFunctions';
-import { fetchProductsList } from './helpers/fetchFunctions';
-import { createProductElement } from './helpers/shopFunctions';
+import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
+import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
+import { getSavedCartIDs } from './helpers/cartFunctions';
 import './style.css';
 
 const createElement = document.createElement('div');
 const header = document.querySelector('.header');
 const productList = document.querySelector('.products');
+const productCarts = document.querySelector('.cart__products');
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 
 const createLoad = () => {
@@ -39,6 +41,15 @@ const CreateProducts = async () => {
   }
 };
 
+const localStorageCart = async () => {
+  const productCart = getSavedCartIDs().map((product) => fetchProduct(product));
+  const products = await Promise.all(productCart);
+  products.forEach((product) => {
+    productCarts.appendChild(createCartProductElement(product));
+  });
+};
+
 window.onload = () => {
   CreateProducts();
+  localStorageCart();
 };

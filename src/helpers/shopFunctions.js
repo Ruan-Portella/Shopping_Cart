@@ -1,8 +1,5 @@
 import { removeCartID, saveCartID } from './cartFunctions';
 import { fetchProduct } from './fetchFunctions';
-
-const getOl = document.querySelector('.cart__products');
-
 // Esses comentários que estão antes de cada uma das funções são chamados de JSdoc,
 // experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições!
 
@@ -126,12 +123,14 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
   );
   section.appendChild(cartButton);
 
+  const olCartList = document.querySelector('.cart__products');
+
   cartButton.addEventListener('click', async (event) => {
     const element = event.target.closest('.product');
+    saveCartID(id);
     const elementId = getIdFromProduct(element);
     const elementData = await fetchProduct(elementId);
     const storage = createCartProductElement(elementData);
-    const olCartList = document.querySelector('.cart__products');
     olCartList.appendChild(storage);
   });
 
