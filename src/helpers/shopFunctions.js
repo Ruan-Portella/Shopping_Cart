@@ -1,7 +1,6 @@
 import { removeCartID, saveCartID } from './cartFunctions';
 import { fetchProduct } from './fetchFunctions';
 
-let valueTotal = 0;
 // Esses comentários que estão antes de cada uma das funções são chamados de JSdoc,
 // experimente passar o mouse sobre o nome das funções e verá que elas possuem descrições!
 
@@ -34,6 +33,7 @@ export const createCustomElement = (element, className, innerText = '') => {
 };
 
 export const valueElement = () => {
+  let valueTotal = 0;
   const Price = document.querySelector('.total-price');
   const CartElements = document.querySelector('.cart__products');
   const productsCart = CartElements.querySelectorAll('.product__price__value');

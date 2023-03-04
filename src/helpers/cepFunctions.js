@@ -9,25 +9,19 @@ export const getAddress = async (CEP) => {
   return Api;
 };
 
-export const searchCep = () => {
-  const cartAddressSpan = document.querySelector('.cart__address');
-  const cepbutton = document.querySelector('.cep-button');
-  cepbutton.addEventListener('click', async () => {
+export const searchCep = async () => {
+  const cartAddress = document.querySelector('.cart__address');
+  try {
     const cepInput = document.querySelector('.cep-input').value;
-    const {
-      address,
-      street,
-      district,
-      neighborhood,
-      state,
-      city,
-      message,
-    } = await getAddress(cepInput);
-    if (message) {
-      cartAddressSpan.innerHTML = 'CEP não encontrado';
+    const { address, street, district, neighborhood, state, city } = await
+    getAddress(cepInput);
+    if (!address) {
       throw new Error('CEP não encontrado');
     }
-    cartAddressSpan.innerHTML = `${address || street
+    cartAddress.innerHTML = `${address || street
     } - ${district || neighborhood} - ${city} - ${state}`;
-  });
+  } catch (error) {
+    cartAddress.innerHTML = 'CEP não encontrado';
+    return error;
+  }
 };
