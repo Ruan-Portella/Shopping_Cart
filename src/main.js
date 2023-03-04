@@ -1,6 +1,7 @@
 import { searchCep } from './helpers/cepFunctions';
 import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
-import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
+import { createProductElement, createCartProductElement,
+  valueElement } from './helpers/shopFunctions';
 import { getSavedCartIDs } from './helpers/cartFunctions';
 import './style.css';
 
@@ -47,6 +48,7 @@ const localStorageCart = async () => {
   products.forEach((product) => {
     productCarts.appendChild(createCartProductElement(product));
   });
+  valueElement();
 };
 
 window.onload = () => {

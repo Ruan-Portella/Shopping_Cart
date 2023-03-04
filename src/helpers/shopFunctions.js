@@ -63,6 +63,7 @@ export const getValueFromProduct = (product) => (
 const removeCartProduct = (li, id) => {
   li.remove();
   removeCartID(id);
+  valueElement();
 };
 
 /**
@@ -147,6 +148,7 @@ export const createProductElement = ({ id, title, thumbnail, price }) => {
     const elementData = await fetchProduct(elementId);
     const storage = createCartProductElement(elementData);
     olCartList.appendChild(storage);
+    valueElement();
   });
 
   return section;
