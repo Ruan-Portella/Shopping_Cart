@@ -39,7 +39,7 @@ export const valueElement = () => {
   products.forEach((product) => {
     valueTotal += Number(product.innerText);
   });
-  totalPrice.innerText = valueTotal.toFixed(1);
+  totalPrice.innerText = valueTotal.toFixed(2);
 };
 
 /**

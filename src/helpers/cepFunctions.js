@@ -24,11 +24,9 @@ export const searchCep = () => {
       message,
     } = await getAddress(cepInput);
     if (message) {
-      cartAddressSpan.innerHTML = '';
-      cartAddressSpan.innerHTML = message;
-      throw new Error(message);
+      cartAddressSpan.innerHTML = 'CEP não encontrado';
+      throw new Error('CEP não encontrado');
     }
-    cartAddressSpan.innerHTML = '';
     cartAddressSpan.innerHTML = `${address || street
     } - ${district || neighborhood} - ${city} - ${state}`;
   });
