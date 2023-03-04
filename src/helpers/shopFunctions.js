@@ -31,6 +31,17 @@ export const createCustomElement = (element, className, innerText = '') => {
   return e;
 };
 
+export const valueElement = () => {
+  const totalPrice = document.querySelector('.total-price');
+  const cart = document.querySelector('.cart__products');
+  const products = cart.querySelectorAll('.product__price__value');
+  let valueTotal = 0;
+  products.forEach((product) => {
+    valueTotal += Number(product.innerText);
+  });
+  totalPrice.innerText = valueTotal.toFixed(1);
+};
+
 /**
  * Função que recupera o ID do produto passado como parâmetro.
  * @param {Element} product - Elemento do produto.
@@ -38,6 +49,10 @@ export const createCustomElement = (element, className, innerText = '') => {
  */
 export const getIdFromProduct = (product) => (
   product.querySelector('span.product__id').innerText
+);
+
+export const getValueFromProduct = (product) => (
+  product.querySelector('span.product_price').innerText
 );
 
 /**
