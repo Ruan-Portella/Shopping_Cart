@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Ruan-Portella.github.io/Shopping_Cart",
   "name": "sd-0x-project-shopping-cart",
   "version": "1.0.0",
   "main": "script.js",
@@ -6,6 +7,9 @@
     "start": "vite",
     "dev": "vite --open",
     "test": "jest --watchAll",
+    "build": "vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test:coverage": "jest --coverage",
     "cy": "cypress run",
     "cy:open": "cypress open --e2e --browser chrome",
@@ -50,6 +54,7 @@
     "stylelint-config-standard": "28.0.0"
   },
   "dependencies": {
+    "gh-pages": "^5.0.0",
     "vite": "^3.1.8"
   }
 }
